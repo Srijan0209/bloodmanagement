@@ -1,6 +1,3 @@
-
-
-
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
@@ -12,28 +9,19 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: function () {
-      if (this.role === "user" || this.role === "admin") {
-        return true;
-      }
-      return false;
+      return this.role === "admin" || this.role === "donar";
     },
   },
   organisationName: {
     type: String,
     required: function () {
-      if (this.role === "organisation") {
-        return true;
-      }
-      return false;
+      return this.role === "organisation";
     },
   },
   hospitalName: {
     type: String,
     required: function () {
-      if (this.role === "hospital") {
-        return true;
-      }
-      return false;
+      return this.role === "hospital";
     },
   },
   email: {
@@ -43,7 +31,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "password is requied"],
+    required: [true, "password is required"],
   },
   website: {
     type: String,
@@ -54,7 +42,7 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: [true, "phone numbe is required"],
+    required: [true, "phone number is required"],
   },
 }, {
   timestamps: true
